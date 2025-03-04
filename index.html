@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 Encoder & Decoder</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            text-align: center;
+        }
+        .section {
+            width: 48%;
+        }
+        h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+            color: #1DB954;
+            text-align: center;
+            width: 100%;
+        }
+        h3 {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+            color: #1DB954;
+        }
+        textarea {
+            width: 100%;
+            height: 120px;
+            margin: 10px 0;
+            padding: 15px;
+            font-size: 1rem;
+            color: #e0e0e0;
+            background-color: #333;
+            border: 1px solid #444;
+            border-radius: 5px;
+            resize: none;
+            transition: all 0.3s ease;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #1DB954;
+            background-color: #222;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+        button:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="section">
+            <h3>Encoder</h3>
+            <textarea id="encoderInput" placeholder="Enter text to encode"></textarea><br>
+            <button onclick="encodeBase64()">Encode</button><br>
+            <textarea id="encoderOutput" readonly placeholder="Encoded Base64"></textarea><br>
+        </div>
+
+        <div class="section">
+            <h3>Decoder</h3>
+            <textarea id="decoderInput" placeholder="Enter Base64 to decode"></textarea><br>
+            <button onclick="decodeBase64()">Decode</button><br>
+            <textarea id="decoderOutput" readonly placeholder="Decoded text"></textarea><br>
+        </div>
+    </div>
+
+    <script>
+        function encodeBase64() {
+            const input = document.getElementById('encoderInput').value;
+            const encoded = btoa(input); // Base64 encode
+            document.getElementById('encoderOutput').value = encoded;
+        }
+
+        function decodeBase64() {
+            const input = document.getElementById('decoderInput').value;
+            try {
+                const decoded = atob(input); // Base64 decode
+                document.getElementById('decoderOutput').value = decoded;
+            } catch (e) {
+                document.getElementById('decoderOutput').value = "Invalid Base64 string!";
+            }
+        }
+    </script>
+
+</body>
+</html>
